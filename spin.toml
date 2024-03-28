@@ -1,0 +1,18 @@
+spin_manifest_version = 2
+
+[application]
+name = "lean-cluster"
+version = "0.1.0"
+authors = ["Ant Weiss <anton@stagecentral.io>"]
+description = ""
+
+[[trigger.http]]
+route = "/..."
+component = "lean-cluster"
+
+[component.lean-cluster]
+source = "target/wasm32-wasi/release/lean_cluster.wasm"
+allowed_outbound_hosts = []
+[component.lean-cluster.build]
+command = "cargo build --target wasm32-wasi --release"
+watch = ["src/**/*.rs", "Cargo.toml"]
